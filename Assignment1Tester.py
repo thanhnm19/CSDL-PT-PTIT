@@ -25,27 +25,29 @@ if __name__ == '__main__':
         with testHelper.getopenconnection(dbname=DATABASE_NAME) as conn:
             conn.set_isolation_level(psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
 
-            # testHelper.deleteAllPublicTables(conn)
+            testHelper.deleteAllPublicTables(conn)
 
-            # [result, e] = testHelper.testloadratings(MyAssignment, RATINGS_TABLE, INPUT_FILE_PATH, conn, ACTUAL_ROWS_IN_INPUT_FILE)
-            # if result :
-            #     print("loadratings function pass!")
-            # else:
-            #     print("loadratings function fail!")
+            [result, e] = testHelper.testloadratings(MyAssignment, RATINGS_TABLE, INPUT_FILE_PATH, conn, ACTUAL_ROWS_IN_INPUT_FILE)
+            if result :
+                print("loadratings function pass!")
+            else:
+                print("loadratings function fail!")
 
-            # [result, e] = testHelper.testrangepartition(MyAssignment, RATINGS_TABLE, 5, conn, 0, ACTUAL_ROWS_IN_INPUT_FILE)
-            # if result :
-            #     print("rangepartition function pass!")
-            # else:
-            #     print("rangepartition function fail!")
+            [result, e] = testHelper.testrangepartition(MyAssignment, RATINGS_TABLE, 5, conn, 0, ACTUAL_ROWS_IN_INPUT_FILE)
+            #[result, e] = testHelper.testrangepartition(MyAssignment, RATINGS_TABLE, 3, conn, 0, ACTUAL_ROWS_IN_INPUT_FILE)
+            #[result, e] = testHelper.testrangepartition(MyAssignment, RATINGS_TABLE, 2, conn, 0, ACTUAL_ROWS_IN_INPUT_FILE)
+            if result :
+                print("rangepartition function pass!")
+            else:
+                print("rangepartition function fail!")
 
-            # # ALERT:: Use only one at a time i.e. uncomment only one line at a time and run the script
-            # #[result, e] = testHelper.testrangeinsert(MyAssignment, RATINGS_TABLE, 100, 2, 3, conn, '2')
-            # [result, e] = testHelper.testrangeinsert(MyAssignment, RATINGS_TABLE, 100, 2, 0, conn, '0')
-            # if result:
-            #     print("rangeinsert function pass!")
-            # else:
-            #     print("rangeinsert function fail!")
+            # ALERT:: Use only one at a time i.e. uncomment only one line at a time and run the script
+            #[result, e] = testHelper.testrangeinsert(MyAssignment, RATINGS_TABLE, 100, 2, 3, conn, '2')
+            [result, e] = testHelper.testrangeinsert(MyAssignment, RATINGS_TABLE, 100, 2, 0, conn, '0')
+            if result:
+                print("rangeinsert function pass!")
+            else:
+                print("rangeinsert function fail!")
 
             testHelper.deleteAllPublicTables(conn)
             MyAssignment.loadratings(RATINGS_TABLE, INPUT_FILE_PATH, conn)
